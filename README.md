@@ -1,11 +1,22 @@
-# EPICS Archiver Appliance Configuration Environment
+# EPICS Archiver Appliance Configuration Environment for CentOS 7
+Forked from Han Lee's repo which covers CentOS 8, Debian and Docker.
+This fork is only supporting CentOS 7.
 
 ![Build](https://github.com/jeonghanlee/epicsarchiverap-env/workflows/Build/badge.svg)
 ![Linter Run](https://github.com/jeonghanlee/epicsarchiverap-env/workflows/Linter%20Run/badge.svg)
 
 Configuration Environment for EPICS Archiver Appliance at <https://github.com/slacmshankar/epicsarchiverap>
 
-## Requirements
+# Build
+
+* Generate all configuration files, and prepare the storage space, and build the archiver appliance
+
+```bash
+make build
+```
+
+which contains three rules such as `conf.archapplproperties`, `conf.storage`, and `build.ant`
+
 
 ### Download source code first
 
@@ -15,17 +26,11 @@ make init
 
 ### Install required packages
 
-* Debian 10 / CentOS 8
-
 ```bash
 make install.pkgs
 ```
 
 ### Tomcat 9
-
-* Debian 10 : tomcat9 will be installed through `make install.pkgs`
-
-* CentOS 8 : See  [docs/README.tomcat.md](docs/README.tomcat.md)
 
 ### MariaDB
 
@@ -62,34 +67,8 @@ make sql.show
 Please see [docs/README.mariadb.md](docs/README.mariadb.md) for the further information.
 
 ### JAVA and Ant
+Wget Java 11 jdk and install in /opt
 
-We can use the local JAVA and Ant environments. The java 11/12 and Ant.
-
-See [docs/README.javapkgs.md](docs/README.javapkgs.md)
-
-* Debina 10 System
-
-```bash
-JAVA_HOME:=/usr/lib/jvm/java-11-openjdk-amd64
-ANT_HOME:=/usr/share/ant
-TOMCAT_HOME:=/usr/share/tomcat9
-```
-
-* CentOS 8 System
-
-Choose the JDK 11, instead of 8 via
-
-```bash
-sudo update-alternatives --config java
-```
-
-```bash
-JAVA_HOME:=/usr/lib/jvm/java-11-openjdk-11.0.8.10-0.el8_2.x86_64/
-ANT_HOME:=/usr/share/ant
-TOMCAT_HOME:=/opt/tomcat9
-```
-
-## TL;DR for Debian 10
 
 ```bash
 make build
@@ -98,41 +77,6 @@ make sd_start
 make sd_status
 ```
 
-|![AAH](docs/images/home.png)|
-| :---: |
-|**Figure 1** Firefox Archiver Appliance Home Page Screenshot.|
-
-* Startup services
-
-```bash
-systemctl start epicsarchiverap.service
-```
-
-* Stop Services
-
-```bash
-systemctl stop epicsarchiverap.service
-```
-
-## CentOS 8
-
-See [docs/README.Centos8.md](docs/README.Centos8.md)
-
-### Build
-
-* Generate all configuration files, and prepare the storage space, and build the archiver appliance
-
-```bash
-make build
-```
-
-which contains three rules such as `conf.archapplproperties`, `conf.storage`, and `build.ant`
-
-### Install
-
-```bash
-make install
-```
 
 ### Systemd
 

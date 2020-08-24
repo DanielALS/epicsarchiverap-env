@@ -2,14 +2,23 @@
 Forked from Han Lee's repo which covers CentOS 8, Debian and Docker.
 This fork is only supporting CentOS 7.
 
-![Build](https://github.com/jeonghanlee/epicsarchiverap-env/workflows/Build/badge.svg)
-![Linter Run](https://github.com/jeonghanlee/epicsarchiverap-env/workflows/Linter%20Run/badge.svg)
-
 Configuration Environment for EPICS Archiver Appliance at <https://github.com/slacmshankar/epicsarchiverap>
 
-# Build
+## Download source code first
 
-* Generate all configuration files, and prepare the storage space, and build the archiver appliance
+```bash
+make init
+```
+
+## Install required packages
+
+```bash
+make install.pkgs
+```
+
+## Build
+
+Generate all configuration files, prepare the storage space and build the archiver appliance
 
 ```bash
 make build
@@ -18,19 +27,11 @@ make build
 which contains three rules such as `conf.archapplproperties`, `conf.storage`, and `build.ant`
 
 
-### Download source code first
-
-```bash
-make init
-```
-
-### Install required packages
-
-```bash
-make install.pkgs
-```
-
 ### Tomcat 9
+The user `tomcat` must already exist:
+  
+    sudo useradd -M tomcat
+
 
 ### MariaDB
 
